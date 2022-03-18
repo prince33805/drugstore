@@ -80,7 +80,7 @@ class UserUpdateForm(forms.ModelForm):
             'amphoe':'อำเภอ',
             'province':'จังหวัด',
             'zipcode':'รหัสไปรษณีย์',
-            'phone':'เบอร์ไทร',
+            'phone':'เบอร์โทร',
         }
         widgets = {
             'name':forms.TextInput(attrs={'class':'form-control','placeholder':'Name'}),

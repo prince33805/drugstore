@@ -45,6 +45,7 @@ urlpatterns = [
     
     path('order/', views.order,name="order"),
     path('order/<str:pk_test>/', views.viewOrder,name="view_order"),
+    path('order/<str:pk_test>/', views.deleteOrder,name="delete_order"),
     
 ]
 
