@@ -15,8 +15,8 @@ pip install virtualenvwrapper
 pip install virtualenvwrapper-win
 
 ### Create a new virtual environment to install dependencies in and activate it:
-mkvirtualenv <newvenv>
-workon <newvenv>
+mkvirtualenv (newvenv)
+workon (newvenv)
 
 ### Then install the dependencies:
 (newvenv) pip install -r requirements.txt
