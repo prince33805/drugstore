@@ -1,0 +1,87 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<section class="content">
+    
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h1>View Medicine</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <div class="col-md-4">
+                    <br><h3>&emsp;Medicine Detail</h3><br>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Detail</th>
+                        <th scope="col"></th>
+                        <th scope="col">Detail</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">ID</th>
+                        <td>{{medicine.id}}</td>
+                        <th scope="row">Company</th>
+                        <td>{{medicine.company_id}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>{{medicine.name}}</td>
+                        <th scope="row">Medical Type</th>
+                        <td>{{medicine.medical_typ}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Buy Price</th>
+                        <td>{{medicine.buy_price}}</td>
+                        <th scope="row">Sell Price</th>
+                        <td>{{medicine.price}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>{{medicine.description}}</td>
+                        <th scope="row">Qty</th>
+                        <td>{{medicine.qty}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Added On</th>
+                        <td>{{medicine.date_created}}</td>
+                        <th scope="row">Last Updated</th>
+                        <td>{{medicine.last_updated}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tags</th>
+                        <td>{{medtags}}</td>
+                        <th scope="row"></th>
+                        <td>
+                            <a class='btn btn-sm btn-warning' href="{% url 'update_medicine' medicine.id %}">Update</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- <div class="col-md-4">
+            <img class="img-thumbnail" src="{{ medicine.imageURL }}" alt="profile-image">
+        </div> -->
+    </div>
+
+    <br>
+
+</section>
+
+{% endblock %}

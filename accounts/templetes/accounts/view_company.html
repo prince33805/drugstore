@@ -1,0 +1,115 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<section class="content">
+    
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h1>View Company</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <br>
+                    <h3>&emsp;Company Detail</h3>
+                </div>
+                <br>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Detail</th>
+                        <th scope="col"></th>
+                        <th scope="col">Detail</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">ID</th>
+                        <td>{{company.id}}</td>
+                        <th scope="row">Name</th>
+                        <td>{{company.name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Address</th>
+                        <td>{{company.address}}</td>
+                        <th scope="row">Phone</th>
+                        <td>{{company.phone}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>{{company.description}}</td>
+                        <th scope="row">Added On</th>
+                        <td>{{company.added_on}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">last updated</th>
+                        <td>{{company.last_updated}}</td>
+                        <th scope="row">
+                            <a class='btn btn-sm btn-warning' href="{% url 'update_company' company.id %}">Update</button>
+                        </th>
+                        <td>
+                            <a class='btn btn-sm btn-danger' href="{% url 'delete_company' company.id %}">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <br>
+                    <h3>&emsp;Medicine Detail</h3>
+                    <br>
+                </div>
+
+                <div class="body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>MED ID</th>
+                                <th>Name</th>
+                                <th>Buy_Price</th>
+                                <th>Sell Price</th>
+                                <th>Qty</th>
+                                <th>Action</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for medicine in medicines %}
+                                <tr>
+                                    <td> {{ medicine.id }} </td> 
+                                    <td> {{ medicine.name }} </td>
+                                    <td> {{ medicine.buy_price }} </td>
+                                    <td> {{ medicine.price }} </td>
+                                    <td> {{ medicine.qty }} </td>
+                                    <td><a class='btn btn-sm btn-warning' href="{% url 'update_medicine' medicine.id %}">Update</button></td>
+                                    <td><a class='btn btn-sm btn-info' href="{% url 'view_medicine' medicine.id %}">View</button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

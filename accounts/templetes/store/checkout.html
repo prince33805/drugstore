@@ -1,0 +1,152 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+	<div class="col-lg-6">
+		<div class="box-element" id="form-wrapper">
+            <form id="form">
+                {% csrf_token %}
+                {% comment %} <div id="user-info">
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="name" placeholder="Name..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="email" name="email" placeholder="Email..">
+                    </div>
+                </div> {% endcomment %}
+                <div id="shipping-info">
+                    <div class="g-col-6">
+                        <hr><p><h3>&emsp;ข้อมูลการขนส่ง :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            <a class="btn btn-outline-dark" href="{% url 'profile_update' %}">แก้ไขข้อมูล
+                            </a><hr>
+                        </h3></p>
+                    </div>
+                    {% comment %} <div class="g-col-6">
+                        <a class="btn btn-outline-dark" href="{% url 'profile_update' %}">แก้ไขข้อมูล
+                        </a><hr>    
+                    </div> {% endcomment %}
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">ชื่อ</th>
+                                <td>{{ profile.name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">อีเมลล์</th>
+                                <td>{{ profile.email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">ที่อยู่</th>
+                                <td>{{ profile.address }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">ตำบล</th>
+                                <td>{{ profile.district }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">อำเภอ</th>
+                                <td>{{ profile.amphoe }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">จังหวัด</th>
+                                <td>{{ profile.province }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">รหัสไปรษณีย์</th>
+                                <td>{{ profile.zipcode }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">เบอร์โทรศัพท์</th>
+                                <td>{{ profile.phone }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="form-check">
+                    <strong>การชำระเงิน : &emsp;&emsp;&emsp; </strong>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        ชำระเงินปลายทาง
+                    </label>
+                </div>
+                <hr>
+                <input id="form-button" class="btn btn-success btn-block" type="submit" value="ยืนยันคำสั่งซื้อ">
+            </form>
+		</div>
+        <br>
+        {% comment %} <div class="box-element hidden" id="payment-info">
+            <small>Paypal Options</small>
+            <button id="make-payment">Make Payment</button>
+        </div> {% endcomment %}
+	</div>
+
+	<div class="col-lg-6">
+		<div class="box-element">
+            <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; กลับไปหน้าตะกร้าสินค้า</a>
+            <hr><h3>&emsp;สรุปรายการสั่งซื้อ</h3><hr>
+            {% for item in items %}
+            <div class="cart-row">
+                <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                <div style="flex:2"><p>{{item.product.name}}</p></div>
+                <div style="flex:1"><p>{{item.product.price}}</p></div>
+                <div style="flex:1"><p>x {{item.quantity}}</p></div>
+                <div style="flex:2"><p>= {{item.get_total}} บาท </p></div>
+            </div>
+            {% endfor %}
+            <h5>จำนวนสินค้าทั้งหมด :  &emsp;{{order.get_cart_items}}</h5>
+            <h5>รวมราคาทั้งหมด :  &emsp;{{order.get_cart_total|floatformat:2}} บาท</h5>
+        </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    
+    var shipping = '{{order.shipping}}'
+    var total = '{{order.get_cart_total}}'
+    var productId = '{{item.product.id}}'
+    
+    var form = document.getElementById('form')
+
+    csrftoken = form.getElementsByTagName('input')[0].value
+    console.log('NewToken:',form.getElementsByTagName('input')[0].value)
+    
+    document.getElementById('form-button').addEventListener('click',function(e){
+        submitFormData()
+    })
+
+    form.addEventListener('submit',function(e){
+        e.preventDefault()
+        console.log('Form submitted...')
+    })
+
+    function submitFormData(){
+        console.log('form-button button clicked')
+        var userFormData = {
+            'total':total,
+            'productId':productId
+        }
+        var url = '/process_order/'
+        fetch(url,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({'form':userFormData})
+        })
+        .then((response)=>response.json())
+        .then((data)=>{
+            console.log('Success:',data);
+            alert('Ordering completed! ');
+
+            cart = {}
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+            window.location.href="{% url 'store' %}"
+        }) 
+    }
+
+</script>
+
+{% endblock content %}

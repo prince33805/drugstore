@@ -1,0 +1,156 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<section class="content">
+    
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h1>View Order</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <br>
+                    <h3>&emsp;Order Detail</h3>
+                </div>
+                <br>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Detail</th>
+                        <th scope="col"></th>
+                        <th scope="col">Detail</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Order ID</th>
+                        <td>{{order.id}}</td>
+                        <th scope="row">Date created</th>
+                        <td>{{order.date_created}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Customer</th>
+                        <td>{{order.customer}}</td>
+                        <th scope="row">Status</th>
+                        <td>{{order.status}}</td>
+                        </tr>
+                    <tr>
+                        <th scope="row">Order Total Quantity</th>
+                        <td>{{order.order_total_quantity}}</td>
+                        <th scope="row">Order total price</th>
+                        <td>{{order.order_total_price}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <br>
+
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Product ID</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Product Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for x in orderitem %}
+                        <tr>
+                            <td>{{x.order}}</td>
+                            <td>{{x.product.id}}</td>
+                            <td>{{x.product}}</td>
+                            <td>{{x.product.price}}</td>
+                            <td>{{x.quantity}}</td>
+                            <td>{{x.item_total_price}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body">
+    
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    Order {{form}}
+                    <input type="submit" name="Submit">
+                </form>    
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <br>
+                    <h3>&emsp;Medicine Detail</h3>
+                    <br>
+                </div>
+
+                <div class="body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>MED ID</th>
+                                <th>Name</th>
+                                <th>Buy_Price</th>
+                                <th>Company</th>
+                                <th>Qty</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for medicine in medicines %}
+                                <tr>
+                                    <td> {{ medicine.id }} </td> 
+                                    <td> {{ medicine.name }} </td>
+                                    <td> {{ medicine.buy_price }} </td>
+                                    <td> {{ medicine.company_id }} </td>
+                                    <td> {{ medicine.qty }} </td>
+                                    <td><a class='btn btn-sm btn-warning' href="{% url 'update_medicine' medicine.id %}">Update</button></td>
+                                    <td><a class='btn btn-sm btn-info' href="{% url 'view_medicine' medicine.id %}">View</button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</section>
+
+{% endblock %}

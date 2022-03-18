@@ -1,0 +1,75 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-5">
+		<div class="card card-body">
+			<h5>Customer :</h5>
+			<hr>
+			<p>User : {{customer.user}}</p>
+			<p>Name : {{customer.name}}</p>
+			<p>Email : {{customer.email}}</p>
+			<p>Phone : {{customer.phone}}</p>
+			<p>Total Order :&emsp;{{order_count}}</p>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<div class="card card-body">
+			<h5>Contact Information :</h5>
+			<hr>
+			<p>Address : {{customer.address}}</p>
+			<p>Amphoe : {{customer.amphoe}}</p>
+			<p>District : {{customer.district}}</p>
+			<p>Province : {{customer.province}}</p>
+			<p>Zipcode : {{customer.zipcode}}</p>
+		</div>
+	</div>
+</div>
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+				Search Order {{myFilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  	</form>
+		</div>
+	</div>
+</div>
+<br>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<table class="table">
+				<tr>
+					<th>Order ID.</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+					<th>Total Price</th>
+					<th>Total Quantity</th>
+					<th>View Order</th>
+				</tr>
+
+				{% for order in qset %}
+
+				<tr>
+					<td>{{order.id}}</td>
+					<td>{{order.date_created}}</td>
+					<td>{{order.status}}</td>
+					<td>{{order.order_total_price}}</td>
+					<td>{{order.order_total_quantity}}</td>
+					<td><a class='btn btn-sm btn-info' href="{% url 'view_order' order.id %}">View</td>
+				</tr>
+
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

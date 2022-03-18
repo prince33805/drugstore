@@ -1,0 +1,31 @@
+{% extends 'store/main.html' %}
+{% block title %}Customer Page{% endblock %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% block content %}
+
+<h2>แก้ไขข้อมูล</h2>
+<div class="row my-4">
+    {% comment %} <div class="col-md-4"></div> {% endcomment %}
+    <div class="col-md">
+        <div class="card">
+            <div class="card-header bg-dark bg-info text-white">
+                รายละเอียดข้อมูล
+            </div>
+            <div class="row p-3">
+                <div class="col-md-8">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ u_form.as_p }}
+                        {% comment %} {{ p_form|crispy }} {% endcomment %}
+
+                        <input class="btn btn-light" type="button" onclick="history.back();" value="กลับ">
+                        {% comment %} <a  class="btn btn-outline-dark" href="{% url 'profile' %}">&#x2190; กลับ</a> {% endcomment %}
+                        <input class="btn btn-success" type="submit" value="ยืนยัน">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

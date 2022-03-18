@@ -1,0 +1,123 @@
+{%  extends 'store/main.html' %}
+
+{% block content %}
+
+<section class="content">
+    
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h1>รายละเอียดการสั่งซื้อ</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <br>
+                    <h3>&emsp;ข้อมูลการสั่งซื้อ</h3>
+                </div>
+                <br>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">รายละเอียด</th>
+                        <th scope="col"></th>
+                        <th scope="col">รายละเอียด</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">เลขคำสั่งซื้อ</th>
+                        <td>{{order.id}}</td>
+                        <th scope="row">วันที่สั่งซื้อ</th>
+                        <td>{{order.date_created}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">ชื่อลูกค้า</th>
+                        <td>{{order.customer}}</td>
+                        <th scope="row">สถานะการจัดส่ง</th>
+                        <td>{{order.status}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">จำนวนสินค้าทั้งหมด</th>
+                        <td>{{order.order_total_quantity}}</td>
+                        <th scope="row">ราคารวมทั้งหมด</th>
+                        <td>{{order.order_total_price}}</td>
+                    </tr>
+                    {% comment %} <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <th scope="row"></th>
+                        <td><button data-product={{product.id}} data-action="add" class="btn btn-outline-success add-btn update-cart">สั่งซื้ออีกครั้ง</button></td>
+                    </tr> {% endcomment %}
+                    </tbody>
+                </table>
+                
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <br>
+
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">เลขคำสั่งซื้อ</th>
+                            <th scope="col">ชื่อสินค้า</th>
+                            <th scope="col">ราคาสินค้าต่อหน่วย</th>
+                            <th scope="col">จำนวน</th>
+                            <th scope="col">ราคารวม</th>
+                            <th scope="col">สั่งสินค้าอีกครั้ง</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for x in orderitem %}
+                        <tr>
+                            <td>{{x.order}}</td>
+                            <td>{{x.product}}</td>
+                            <td>{{x.product.price}}</td>
+                            <td>{{x.quantity}}</td>
+                            <td>{{x.item_total_price}}</td>
+                            <td><button data-product={{x.product.id}} data-action="add" class="btn btn-outline-success add-btn update-cart">เพิ่มลงตะกร้า</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    {% comment %} <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body">
+    
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    Order {{form}}
+                    <input type="submit" name="Submit">
+                </form>    
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+</section>
+
+{% endblock %}

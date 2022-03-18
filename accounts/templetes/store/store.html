@@ -1,0 +1,30 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+    {% if search  %}
+        {% if empty  %}
+            <h3>ไม่พบคำค้นหา : {{search_post}}</h3>
+        {% else %}
+            <h3>ค้นหา : {{search_post}}</h3>
+        {% endif %}
+    {% endif %}
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{product.imageURL}}">
+            <div class="box-element product">
+                <h6><strong>{{product.name}}</strong></h6>
+                <hr>
+        
+                <button data-product={{product.id}} data-action="add" class="btn btn-outline-success add-btn update-cart">เพิ่มลงตะกร้า</button>
+                <a class="btn btn-outline-secondary" href="{% url 'view_product' product.id %}">ดูสินค้า</a>
+                <h4 style="display: inline-block; float: right"><strong>
+                {{product.price|floatformat:2}} บาท</strong></h4>
+        
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

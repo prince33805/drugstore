@@ -1,0 +1,39 @@
+{% load static %}
+
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #fff;
+    margin-right: 20px;
+  }
+</style>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="nav-link" href="{% url 'home' %}">
+      {% comment %} <img id="logo" src="{% static 'images/cart.png' %}" width="40" height="30" > {% endcomment %}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="navbar-brand" href="{% url 'home' %}">
+            &emsp;&emsp;<i class="bi bi-suit-heart"></i> ADMIN - SALAYA DASHBOARD</a>
+        </li>
+      </ul>
+    </div>
+    <span class="hello-msg"> Hello, {{request.user}}</span>
+    <div class="form-inline my-2 my-lg-0 pr-2">
+      <!-- <button type="button" class="btn btn-info waves-effect">
+        <a href="{% url 'home' %}" class="text-white">Profile</a>
+      </button> -->
+    </div>
+    <div class="form-inline my-2 my-lg-0 pr-5">
+      <button type="button" class="btn btn-secondary waves-effect">
+        <a href="{% url 'logout' %}" class="text-white">Log Out</a>
+      </button>
+
+    </div>
+  </nav>

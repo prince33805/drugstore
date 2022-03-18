@@ -1,0 +1,62 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<section class="content">
+
+    <div class="container-fluid">
+        <div class="block-header">
+            <h1>Customer</h1>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="header">
+                            <br>
+                            <h3>&emsp;
+                                All Customer
+                            </h3><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Added On</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in customer %}
+                                <tr>
+                                    <td> {{ x.id }} </td> 
+                                    <td> {{ x.name }} </td>
+                                    <td> {{ x.phone }} </td>
+                                    <td> {{ x.email }} </td>
+                                    <td> {{ x.date_created }} </td>
+                                    {% comment %} <td><a class='btn btn-sm btn-warning' href="{% url 'update_company' company.id %}">Update</button></td> {% endcomment %}
+                                    <td><a class='btn btn-sm btn-info' href="{% url 'customer_detail' x.id %}">View</button></td> 
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="block-header">
+            <h1>Manage Company</h1>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <br>
+                        <h3>&emsp;Add Company</h3>
+                    </div>
+                    
+                    {% if submitted %}
+                        <div class="container">
+                            Your Company was submitted Successfully!!!
+                        </div>
+                        <div class="container">
+                            <br><a class='btn btn-sm btn-info' href="{% url 'company' %}">Back</a>
+                        </div>
+                    {% else %}
+                        <div class="container">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit">
+                            </form>
+                            <br>
+                        </div> 
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <br>
+                        <h2>&emsp;
+                            All Companies
+                        </h2><br>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Added On</th>
+                                    <th>Action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for company in allcompany %}
+                                    <tr>
+                                        <td> {{ company.id }} </td> 
+                                        <td> {{ company.name }} </td>
+                                        <td> {{ company.phone }} </td>
+                                        <td> {{ company.email }} </td>
+                                        <td> {{ company.added_on }} </td>
+                                        <td><a class='btn btn-sm btn-warning' href="{% url 'update_company' company.id %}">Update</button></td>
+                                        <td><a class='btn btn-sm btn-info' href="{% url 'view_company' company.id %}">View</button></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% comment %} {% endif %} {% endcomment %}
+
+    </div>
+</section>
+
+{% endblock %}

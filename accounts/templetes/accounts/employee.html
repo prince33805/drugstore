@@ -1,0 +1,84 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="block-header">
+            <h1>Manage Employee</h1>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <br>
+                        <h3>&emsp;Add Employee</h3>
+                    </div>
+                    
+                {% if submitted %}
+                    <div class="container">
+                        Your Employee was submitted Successfully!!!
+                    <div>
+                    <br>
+                    <a class='btn btn-sm btn-info' href="{% url 'employee' %}">Back</a>
+                {% else %}
+                    <div class="container">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit">
+                        </form>
+                    </div> 
+                    <br>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <br>
+                        <h2>&emsp;All Employee</h2><br>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Joining Date</th>
+                                    <th>Action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for x in allemployee %}
+                                    <tr>
+                                        <td> {{ x.id }} </td> 
+                                        <td> {{ x.name }} </td>
+                                        <td> {{ x.phone }} </td>
+                                        <td> {{ x.email }} </td>
+                                        <td> {{ x.joining_date }} </td>
+                                        <td><a class='btn btn-sm btn-warning' href="{% url 'update_employee' x.id %}">Update</button></td>
+                                        <td><a class='btn btn-sm btn-danger' href="{% url 'delete_employee' x.id %}">Delete</button></td>    
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+{% endblock %}

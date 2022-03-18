@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="wrapper ">
+  <!-- Sidebar    -->
+  <nav id="sidebar" >
+       <ul class="navbar-nav ">
+          <li class="nav-item" >
+            <a href="{% url 'home' %}"class="p-4">&emsp;
+              <i class="bi bi-house"></i>&emsp; Home</a>
+          </li>
+          {% comment %} <li>
+              <a href="{% url 'products' %}" class="p-4">Products</a>
+          </li> {% endcomment %}
+          <li>
+            <a href="{% url 'company' %}" class="p-4">&emsp;
+              <i class="bi bi-building"></i>&emsp; company</a>
+          </li>
+          <li>
+              <a href="{% url 'employee' %}" class="p-4">&emsp;
+              <i class="bi bi-people"></i>&emsp; Employee</a>
+          </li>
+          <li>
+            <a href="{% url 'medicine' %}" class="p-4">&emsp;
+              <i class="bi bi-bag-plus"></i>&emsp; Medicine</a>
+          </li>
+          <li>
+            <a href="{% url 'customer' %}" class="p-4">&emsp;
+              <i class="bi bi-person-circle"></i>&emsp; Customer</a>
+          </li>
+          <li>
+            <a href="{% url 'order' %}" class="p-4">&emsp;
+              <i class="bi bi-journal-text"></i>&emsp; Order</a>
+          </li>
+      </ul>
+  </nav>
+  
+  <div id="content">
+  <div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
