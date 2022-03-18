@@ -24,7 +24,6 @@ workon <newvenv>
 (newvenv) pip install -r requirements.txt
 
 # Once pip has finished downloading the dependencies:
-(newvenv) cd crm1
 (newvenv) python manage.py runserver
 
 ```
