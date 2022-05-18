@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8wf$rf$sco#1gx7lob^s+f%tg-x9+uaewcne97+2kk-lnqdkeq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['drugstore2.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'crm1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r'C:\Users\princ\Desktop\crm1\accounts\templetes'],
+        'DIRS': [r'C:\Users\prince\Desktop\drugstore\accounts\templetes'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
