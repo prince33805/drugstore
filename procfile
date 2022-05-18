@@ -1,0 +1,1 @@
+web: gunicorn drugstore.wsgi --log-file -
